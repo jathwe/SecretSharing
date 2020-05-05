@@ -4,6 +4,14 @@ from __future__ import print_function
 import random
 import functools
 
+# Here we can declare whatever prime number we want, 
+# this will determine the size of the key,
+# the larger the prime, the larger the key
+_PRIME = 2 ** 79 - 1
+
+#random int to help keep things random
+_RINT = functools.partial(random.SystemRandom().randint, 0)
+
 def main():
     #Make the secret and its shares
     secret, shares = make_random_shares(minimum=4, shares=8)

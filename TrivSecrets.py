@@ -10,8 +10,12 @@ def make_random_shares(numShares):
 def main():
     numShares = 6
     secret, shares = make_random_shares(numShares)
-    print (secret)
-    print (shares[1])
+    print ('secret: 
+        secret)
+    print ('Shares:')
+    ifshares:
+        for share in shares:
+            print(' ',share)
 
 
 if __name__ == '__main__':

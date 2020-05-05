@@ -1,3 +1,4 @@
+
 from __future__ import division
 from __future__ import print_function
 
@@ -37,8 +38,8 @@ def make_random_shares(minimum, shares, prime=_PRIME):
               for i in range(1, shares + 1)]
     return poly[0], points
 
-    def _extended_gcd(a, b):
-        """
+def _extended_gcd(a, b):
+    """
     This is an implemenation of the Extended Euclidean algorith,
     an algorithm that finds the inverse of the
     denominator modulo p and then multiplys the numerator by this inverse
@@ -65,8 +66,8 @@ def _divmod(num, den, p):
     inv, _ = _extended_gcd(den, p)
     return num * inv
 
-    def _lagrange_interpolate(x, x_s, y_s, p):
-        """
+def _lagrange_interpolate(x, x_s, y_s, p):
+    """
     Finding the y values for the given x's,
     k points with give us a polynomail of the kth order.
     This is an implementation of lagrange interpolation
@@ -92,8 +93,8 @@ def _divmod(num, den, p):
                for i in range(k)])
     return (_divmod(num, den, p) + p) % p
 
-    def recover_secret(shares, prime=_PRIME):
-        """
+def recover_secret(shares, prime=_PRIME):
+    """
     Recover the secrets using the points given via shares
     """
     #another error check

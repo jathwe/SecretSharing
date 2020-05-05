@@ -37,6 +37,34 @@ def make_random_shares(minimum, shares, prime=_PRIME):
               for i in range(1, shares + 1)]
     return poly[0], points
 
+    def _extended_gcd(a, b):
+        """
+    This is an implemenation of the Extended Euclidean algorith,
+    an algorithm that finds the inverse of the
+    denominator modulo p and then multiplys the numerator by this inverse
+    More info on this algorithm can be found here:
+    http://en.wikipedia.org/wiki/Modular_multiplicative_inverse#Computation
+    """
+    x = 0
+    last_x = 1
+    y = 1
+    last_y = 0
+    while b != 0:
+        quot = a // b
+        a, b = b, a % b
+        x, last_x = last_x - quot * x, x
+        y, last_y = last_y - quot * y, y
+    return last_x, last_y
+
+def _divmod(num, den, p):
+    """Compute num / den modulo prime p
+
+    To explain what this means, the return value will be such that
+    the following is true: den * _divmod(num, den, p) % p == num
+    """
+    inv, _ = _extended_gcd(den, p)
+    return num * inv
+
 def main():
     #Make the secret and its shares
     secret, shares = make_random_shares(minimum=4, shares=8)

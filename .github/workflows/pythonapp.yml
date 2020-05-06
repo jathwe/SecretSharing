@@ -42,7 +42,7 @@ jobs:
         python secrets.py
 
     - name: Copy output files to artifact directory
-      working-directory: ${{runner.workspace}}
+      working-directory: ${{runner.workspace}}/build
       run: |
         mkdir artifacts
         for f in $OUTPUT_FILES

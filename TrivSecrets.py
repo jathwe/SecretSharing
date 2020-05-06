@@ -1,5 +1,6 @@
 import hashlib
 from random import randint
+import sys
 
 #definitions for ease of use
 #a 33 digit max to use as mod so we get 32 digit integer
@@ -32,16 +33,22 @@ def make_random_shares(numShares):
 def recover_secret(shares):
     return sum(shares)
 
+
 def main():
     numShares = 6
     secret, shares = make_random_shares(numShares)
-    print ('Secret:',secret)
-    print ('Shares:')
-    if shares:
-        for share in shares:
-            print(' ',share)
-    print('Secret Recovered: ',recover_secret(shares))
-
+     #loop writes this to terminal and file
+    for x in range (0,2):
+        if x == 1:
+            sys.stdout = open("SecretShareOutput.txt","w")
+        print ('Trivial Solution: \n')
+        print ('Secret:',secret)
+        print ('Shares:')
+        if shares:
+            for share in shares:
+                print(' ',share)
+        print('Secret Recovered: ',recover_secret(shares))
+        print('\n\n')
 
 if __name__ == '__main__':
     main()

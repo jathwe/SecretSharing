@@ -34,25 +34,17 @@ jobs:
         flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
         # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+
     - name: Run Trivial Solution
       run: |
         python TrivSecrets.py
+
     - name: Run Advanced Solution
       run: |
         python secrets.py
-
-    - name: Copy output files to artifact directory
-      working-directory: ${{runner.workspace}}/build
-      run: |
-        mkdir artifacts
-        for f in $OUTPUT_FILES
-        do
-          echo "  Copying $f"
-          cp $f artifacts/
-        done
         
     - name: Upload output files to GitHub so they can be reviewed
       uses: actions/upload-artifact@v1
       with:
         name: project_output
-        path: ${{runner.workspace}}/artifacts
+        path: SecretShareOutput.txt
